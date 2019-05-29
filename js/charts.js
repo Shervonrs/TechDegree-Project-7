@@ -2,6 +2,15 @@ Chart.defaults.global.elements.point.backgroundColor = '#000'
 let trafficWidget = document.getElementById("traffic_widget").getContext('2d');
 let daily_traffic_widget = document.getElementById("daily_traffic_widget");
 let daily_traffic_pie = document.getElementById("daily_traffic_pie");
+let array = [];
+
+let units = {
+  Hourly : [1500, 750, 1250, 1950, 500, 1350, 800, 1200, 2000, 300, 1000 ],
+  Daily : [1600, 850, 1350, 1050, 600, 1450, 900, 1300, 2100, 400, 2000 ],
+  Weekly : [1700, 950, 1450, 1905, 700, 1550, 1000, 1400, 2200, 500, 1700 ],
+  Monthly : [1800, 1050, 1550, 1509, 200, 1650, 1100, 1500, 2300, 1600, 2200 ],
+}
+
 
 let trafficData= {
     labels: ["16-22", "23-29", "30-5","6-12", "13-19", "20-26",
@@ -100,3 +109,24 @@ let dailymobile= new Chart(daily_traffic_pie,{
   data: daily_pie_data,
   options:daily_pie_option
 });
+
+
+const unitPicker = function(choice) {
+  const entries = Object.entries(units);
+  for(let i = 0; i < entries.length; i++){
+    let timePeriod = entries[i][0];
+    let dataArray = entries[i][1];
+    if(choice === timePeriod) {
+      let emptyArray = trafficData.datasets[0]["data"] = "";
+      let newArray =trafficData.datasets[0]["data"] = dataArray;
+      return choice;
+    }
+  }
+}
+
+document.addEventListener('click', (e) =>{
+  const btn = e.target;
+  if(btn.innerText === unitPicker(btn.innerText)) {
+    trafficChart.update();
+  }
+})
