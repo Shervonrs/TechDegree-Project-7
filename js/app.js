@@ -48,42 +48,35 @@ send.addEventListener('click', () =>{
 dropAlert.innerHTML =
  `<div class="alert_banner">
  <span class="circle_notification"></span>
-  <div class="alert_div">
+  <!-- <div class="alert_div"> -->
  <p class="alert_message">You have 6 unread messages</p>
- </div>
+ <!-- </div> -->
  <p class="alert-banner-close">x</p>
 </div>
 <div class="alert_banner">
 <span class="circle_notification"></span>
-<div class="alert_div">
+<!-- <div class="alert_div"> -->
   <p class="alert_message">You have 3 new followers</p>
-  </div>
+  <!-- </div> -->
   <p class="alert-banner-close">x</p>
   </div>
   <div class="alert_banner">
   <span class="circle_notification"></span>
-  <div class="alert_div">
+  <!-- <div class="alert_div"> -->
   <p class="alert_message">Your password expires in 7 days</p>
-  </div>
+  <!-- </div> -->
   <p class="alert-banner-close">x</p>
   </div>
 `;
 
-// Displays hidden notification menu, hides notification dot
-bell.addEventListener('click', (e) =>{
-  const btn = e.target;
-  if(btn.tagName === "svg" || btn.tagName ==="path") {
-    dropAlert.style.display = "block";
-    circle.style.display= "none";
-  }
-});
+
 
 // Closes hides notifications upon click
 document.addEventListener('click', (e) =>{
   const btn = e.target;
-  if( btn.tagName ==="svg" || btn.tagName === "path" || btn.className ==="dropdown" || btn.className === "drop-alert"
+  if(( btn.tagName ==="svg" || btn.tagName === "path" || btn.className ==="dropdown" || btn.className === "drop-alert"
   || btn.className ==="alert_banner" || btn.className === "alert_message"
-  || btn.className === "alert-banner-close" ){
+  || btn.className === "alert-banner-close") && (dropAlert.classList.length === 1)){
     dropAlert.style.display = "block";
   }
   else {
@@ -91,7 +84,21 @@ document.addEventListener('click', (e) =>{
   }
 })
 
-// close botton
+// Displays hidden notification menu, hides notification dot
+bell.addEventListener('click', (e) =>{
+  const btn = e.target;
+  if((btn.tagName === "svg" || btn.tagName ==="path") && (dropAlert.classList.length === 1)) {
+    dropAlert.style.display = "block";
+    circle.style.display= "none";
+    dropAlert.classList.add("show");
+  }
+  else if((btn.tagName === "svg" || btn.tagName ==="path") && (dropAlert.classList.length > 1)) {
+    dropAlert.style.display = "none";
+    dropAlert.classList.remove("show");
+  }
+});
+
+// close button
 const alertBanner = document.querySelectorAll('.alert_banner');
 for(let i = 0; i <alertBanner.length; i++) {
   alertBanner[i].addEventListener('click', (e) => {

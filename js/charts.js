@@ -110,7 +110,7 @@ let dailymobile= new Chart(daily_traffic_pie,{
   options:daily_pie_option
 });
 
-
+//loops over time period array and return buttons and
 const unitPicker = function(choice) {
   const entries = Object.entries(units);
   for(let i = 0; i < entries.length; i++){
@@ -124,7 +124,7 @@ const unitPicker = function(choice) {
   }
 }
 
-document.addEventListener('click', (e) =>{
+document.addEventListener('click', (e) => {
   const btn = e.target;
   if(btn.innerText === unitPicker(btn.innerText)) {
     trafficChart.update();
