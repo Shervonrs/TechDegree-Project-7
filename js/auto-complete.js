@@ -4,6 +4,7 @@ const nameLists = ['Victoria Chambers', 'Dale Byrd', 'Dawn Wood', 'Dan Oliver'];
 let matches = [];
 let resultsCursor= 0;
 
+
 // Focus the input
 targetInput.focus();
 
@@ -11,7 +12,6 @@ targetInput.focus();
 targetInput.addEventListener('keyup', function(event){
   // Key Codes: Enter-13, Arrow up - 38, Arrow Down- 40
   results.innerHTML= "";
-
 
   toggleResults("hide");
 
@@ -28,6 +28,13 @@ targetInput.addEventListener('keyup', function(event){
   } else {
     results.style.display="none";
   }
+
+  for(let i= 0; i < results.children.length; i++) {
+    results.children[i].addEventListener('click', (e) =>{
+      targetInput.value = results.children[i].innerHTML;
+      results.style.display ="none";
+})
+}
 
   if(results.classList.contains('visible')) {
     switch(event.keyCode) {
@@ -82,7 +89,7 @@ function displayMatches(matchList) {
   let j = 0
 
   while(j <matchList.length) {
-    results.innerHTML += '<li class="results">' + matchList[j] + '</li>';
+    results.innerHTML += '<li class="liResults">' + matchList[j] + '</li>';
     j++;
   }
 
@@ -99,5 +106,4 @@ function moveCursor(pos) {
     results.children[x].classList.remove('highlighted');
   }
   results.children[pos].classList.add("highlighted");
-
 }

@@ -2,6 +2,7 @@ Chart.defaults.global.elements.point.backgroundColor = '#000'
 let trafficWidget = document.getElementById("traffic_widget").getContext('2d');
 let daily_traffic_widget = document.getElementById("daily_traffic_widget");
 let daily_traffic_pie = document.getElementById("daily_traffic_pie");
+const traffic_li = document.querySelectorAll(".traffic_li");
 let array = [];
 
 let units = {
@@ -10,7 +11,6 @@ let units = {
   Weekly : [1700, 950, 1450, 1905, 700, 1550, 1000, 1400, 2200, 500, 1700 ],
   Monthly : [1800, 1050, 1550, 1509, 200, 1650, 1100, 1500, 2300, 1600, 2200 ],
 }
-
 
 let trafficData= {
     labels: ["16-22", "23-29", "30-5","6-12", "13-19", "20-26",
@@ -40,7 +40,6 @@ let trafficOption = {
   legend: {
     display: false
   }
-
 };
 
 let daily_traffic = {
@@ -126,7 +125,13 @@ const unitPicker = function(choice) {
 
 document.addEventListener('click', (e) => {
   const btn = e.target;
-  if(btn.innerText === unitPicker(btn.innerText)) {
-    trafficChart.update();
+    if (btn.tagName ==="LI") {
+      for(let i = 0; i<traffic_li.length; i++) {
+        traffic_li[i].classList.remove("bgcolor");
   }
-})
+}
+if(btn.innerText === unitPicker(btn.innerText) && btn.tagName !=="svg"){
+   trafficChart.update();
+   btn.classList.add("bgcolor");
+ }
+});

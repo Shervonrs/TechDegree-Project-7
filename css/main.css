@@ -193,11 +193,10 @@ nav img {
   width: 85%;
   position: relative;
   z-index: 0;
-
 }
 
 .dashboard_search #autocomplete-results {
-  border: 1px solid black;
+  border: 1px solid lightgray;
   margin: auto 1em auto auto;
   position: absolute;
   width: 40%;
@@ -208,8 +207,12 @@ nav img {
   display: none;
 }
 
-.results {
+.liResults {
   padding: 1em;
+}
+
+.liResults:hover {
+  background-color: #f2f2f2;
 }
 
 .highlighted {
@@ -318,7 +321,8 @@ nav img {
   cursor: pointer;
 }
 
-.traffic_li:hover{
+.traffic_li:hover,
+.bgcolor{
   background-color: #2D99D3;
 }
 
@@ -348,6 +352,7 @@ nav img {
 .social-status {
   margin: 1.5em;
 }
+
 .social {
   display: flex;
   flex-direction: row;
@@ -388,12 +393,14 @@ nav img {
   height: 50%;
   align-self: center;
 }
+
 .social_text {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-left: 1em;
 }
+
 .social_text .text {
   align-self: center;
   color: #f2ea98;
@@ -457,7 +464,6 @@ nav img {
   margin: 0;
 }
 
-
 .member_text {
   font-weight: lighter;
   font-size: .8em;
@@ -465,7 +471,6 @@ nav img {
 
 .member_text p {
   margin: 0;
-
 }
 
 .profile_pic {
@@ -480,9 +485,6 @@ nav img {
   /* margin-top: 1em; */
 }
 /* Recent Activity Section */
-.recent-activity h3 {
-  font
-}
 
 .recent-activity {
   border-top: 1px solid lightgray;
@@ -501,6 +503,16 @@ nav img {
 
 .recent_text p:first-child {
    margin-bottom: 0;
+}
+
+.activity_container{
+  position: relative;
+}
+
+.activity_container::after {
+  content:"\276F";
+  color:#f2ea98;
+  margin-left: auto;
 }
 
 .activity_container {
@@ -544,7 +556,6 @@ nav img {
 .toggleBtn_container {
   align-self: center;
 }
-
 
 .toggle_btn {
   display: flex;
@@ -611,7 +622,8 @@ textarea {
   margin: 1.2em 0;
   background-color: #f2ea98;
   color: white;
-  border-radius: 4px
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 /* Timezone */
@@ -645,11 +657,6 @@ textarea {
   background-color:#c6845d;
   margin-left: 1em;
 }
-/*
-.traffic_widget_container,
-.daily_traffic_container {
-  width: 100vw;
-} */
 
 /* ====================== */
  /* Grid Components */
@@ -747,7 +754,6 @@ main {
   .traffic_li {
     margin-left: 1em;
   }
-
 }
 
 @media(min-width: 768px) {
@@ -763,7 +769,6 @@ main {
     font-weight: lighter;
     font-size: 1.5em;
   }
-
 }
 
 @media (max-width:768px) {
