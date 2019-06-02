@@ -37,7 +37,7 @@ send.addEventListener('click', () =>{
   }else if (message.value === "") {
     alert("Please fill out message field before sending");
   } else {
-    alert(`Message successfully sent to $(user.value)`)
+    alert("Message successfully sent to " + user.value)
   }
 });
 
@@ -67,26 +67,30 @@ dropAlert.innerHTML =
 // Closes hides notifications upon click
 document.addEventListener('click', (e) =>{
   const btn = e.target;
-  if(( btn.tagName ==="svg" || btn.tagName === "path" || btn.className ==="dropdown" || btn.className === "drop-alert"
-  || btn.className ==="alert_banner" || btn.className === "alert_message"
-  || btn.className === "alert-banner-close") && (dropAlert.classList.length === 1)){
-    dropAlert.style.display = "block";
-  }
-  else {
-    dropAlert.style.display = "none";
-  }
+  let noneBlock = display(btn);
   do {
-    if(dropAlert.classList.length === 1){
-      dropAlert.style.display = "none";
-      btn.classList.remove("show");
+    if(dropAlert.classList.length === 1 ){
+      dropAlert.style.display = "display";
+
     }
     else if(dropAlert.classList.length === 2){
-      dropAlert.style.display = "block";
-      btn.classList.remove("show");
+      dropAlert.style.display = "none";
     }
 
   } while (dropAlert.classList.length > 2);
 })
+
+display = (btn) => {
+  if(( btn.tagName ==="svg" || btn.tagName === "path" || btn.className ==="dropdown" || btn.className === "drop-alert"
+  || btn.className ==="alert_banner" || btn.className === "alert_message"
+  || btn.className === "alert-banner-close") && (dropAlert.classList.length === 1)){
+    const block =dropAlert.style.display = "block";
+    return block;
+  } else {
+    const none = dropAlert.style.display = "none";
+    return none;
+  }
+}
 
 // Displays hidden notification menu, hides notification dot
 bell.addEventListener('click', (e) =>{

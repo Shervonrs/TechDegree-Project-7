@@ -50,8 +50,6 @@
         <h2 class="dashboard_h2">Dashboard</h2>
         <div class="dashboard_search">
           <input type="search" id="search" placeholder="Search" autocomplete="off">
-          <ul id="autocomplete-results"></ul>
-
         </div>
       </div>
 
@@ -243,7 +241,8 @@
         <h3>Message User</h3>
 
         <form class="form_field_container">
-          <input type="text" placeholder="Search for User" class="form-field" id="userfield">
+          <input type="text" placeholder="Search for User" class="form-field" id="userfield" autocomplete="off" >
+          <ul id="autocomplete-results"></ul>
           <textarea placeholder="Message for user" class="form-area" id="messageField"></textarea>
           <button class="button_send" id="send">Send</button>
         </form>

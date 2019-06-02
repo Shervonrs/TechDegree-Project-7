@@ -1,4 +1,4 @@
-const targetInput= document.getElementById('search')
+const targetInput= document.getElementById('userfield')
 const results= document.getElementById('autocomplete-results');
 const nameLists = ['Victoria Chambers', 'Dale Byrd', 'Dawn Wood', 'Dan Oliver'];
 let matches = [];
@@ -7,6 +7,17 @@ let resultsCursor= 0;
 
 // Focus the input
 targetInput.focus();
+
+// Add event listener for the input keydown
+
+window.addEventListener('keydown', function(e){
+  if(e.keyIdentifier === 'U+000A' || e.keyIdentifier === "Enter" ||e.keyCode === 13) {
+    if(e.target.nodeName === 'INPUT' && e.target.type === "text") {
+      e.preventDefault();
+      return false;
+    }
+  }
+})
 
 // Add event listener for the input keyup
 targetInput.addEventListener('keyup', function(event){
@@ -62,6 +73,9 @@ targetInput.addEventListener('keyup', function(event){
   }
 
 });
+
+// Disables form enter default settings
+
 
 // Define a function for toggling the results list
 function toggleResults(action) {
